@@ -65,4 +65,8 @@ public class ProvServiceImpl implements ProvService {
 
         return ProvResponse.builder().id(provUpdRequest.getId()).name(prov.getName()).build();
     }
+
+    public Prov provById(ProvRequest provRequest) {
+        return provRepo.getById(provRequest.getId());
+    }
 }

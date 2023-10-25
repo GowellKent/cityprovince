@@ -16,4 +16,6 @@ public interface ProvService {
     void delProv(ProvDelRequest provDelRequest);
 
     ProvResponse updProv(ProvUpdRequest provUpdRequest);
+
+    Prov provById(ProvRequest provRequest);
 }

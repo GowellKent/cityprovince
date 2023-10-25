@@ -30,6 +30,11 @@ public class ProvController {
         return ResponseEntity.created(new URI("/add/")).body(provResponse);
     }
 
+    @PostMapping("/find")
+    public Prov findProv(@RequestBody ProvRequest provRequest){
+        return provService.provById(provRequest);
+    }
+
     @DeleteMapping("/del")
     public void delProv(@RequestBody ProvDelRequest provDelRequest){
         provService.delProv(provDelRequest);
