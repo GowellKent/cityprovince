@@ -3,6 +3,7 @@ package com.territory.cityprovince.controllers;
 import com.territory.cityprovince.dto.CityDelRequest;
 import com.territory.cityprovince.dto.CityRequest;
 import com.territory.cityprovince.dto.CityResponse;
+import com.territory.cityprovince.dto.CityUpdRequest;
 import com.territory.cityprovince.entities.City;
 import com.territory.cityprovince.services.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,4 +34,10 @@ public class CityController {
 
     @DeleteMapping("/del")
     public void delCity(@RequestBody CityDelRequest cityDelRequest) { cityService.delCity(cityDelRequest);}
+
+    @PutMapping("/upd")
+    public  ResponseEntity<CityResponse> updCity(@RequestBody CityUpdRequest cityUpdRequest) throws Exception {
+        CityResponse cityResponse = cityService.updCity(cityUpdRequest);
+        return ResponseEntity.created(new URI("/upd/")).body(cityResponse);
+    }
 }

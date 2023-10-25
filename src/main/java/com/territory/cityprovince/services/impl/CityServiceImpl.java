@@ -3,6 +3,7 @@ package com.territory.cityprovince.services.impl;
 import com.territory.cityprovince.dto.CityDelRequest;
 import com.territory.cityprovince.dto.CityRequest;
 import com.territory.cityprovince.dto.CityResponse;
+import com.territory.cityprovince.dto.CityUpdRequest;
 import com.territory.cityprovince.entities.City;
 import com.territory.cityprovince.entities.Prov;
 import com.territory.cityprovince.repositories.CityRepo;
@@ -16,7 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @Service
-public class CItyServiceImpl implements CityService {
+public class CityServiceImpl implements CityService {
 
     @Autowired
     private CityRepo cityRepo;
@@ -32,8 +33,7 @@ public class CItyServiceImpl implements CityService {
         Prov prov = provRepo.findById(provId).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Province ID "+ provId + " Not Found!"));
 
         City city = new City();
-
-        city.setName(cityRequest.getName());
+        city.setName(cityRequest.getName().toUpperCase());
         city.setProv(prov);
         prov.getCities().add(city);
 
@@ -55,5 +55,21 @@ public class CItyServiceImpl implements CityService {
         cityRepo.deleteById(cityId);
 
         throw new ResponseStatusException(HttpStatus.OK);
+    }
+
+    @Override
+    public CityResponse updCity(CityUpdRequest cityUpdRequest) {
+        Long cityId = cityUpdRequest.getId();
+
+        City city = cityRepo.findById(cityId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "City ID "+ cityId+" Not Found!"));
+
+        city.setName(cityUpdRequest.getName().toUpperCase());
+        cityRepo.save(city);
+
+        return CityResponse.builder()
+                .id(cityId)
+                .name(city.getName())
+                .provId(city.getProv().getId())
+                .build();
     }
 }

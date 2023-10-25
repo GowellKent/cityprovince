@@ -13,7 +13,8 @@ import lombok.NoArgsConstructor;
 @Table
 public class City {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "city_sequence", sequenceName =  "city_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "city_sequence")
     private Long id;
 
     @Column(length = 50, nullable = false)
