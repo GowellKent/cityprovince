@@ -1,5 +1,6 @@
 package com.territory.cityprovince.services.impl;
 
+import com.territory.cityprovince.dto.CityDelRequest;
 import com.territory.cityprovince.dto.CityRequest;
 import com.territory.cityprovince.dto.CityResponse;
 import com.territory.cityprovince.entities.City;
@@ -43,5 +44,16 @@ public class CItyServiceImpl implements CityService {
                 .name(newCity.getName())
                 .provId(provId)
                 .build();
+    }
+
+    @Override
+    public void delCity(CityDelRequest cityDelRequest) {
+        Long cityId = cityDelRequest.getId();
+
+        City city = cityRepo.findById(cityId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "City ID " + cityId + " Not Found!"));
+
+        cityRepo.deleteById(cityId);
+
+        throw new ResponseStatusException(HttpStatus.OK);
     }
 }

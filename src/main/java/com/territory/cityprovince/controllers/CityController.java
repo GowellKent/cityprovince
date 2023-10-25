@@ -1,5 +1,6 @@
 package com.territory.cityprovince.controllers;
 
+import com.territory.cityprovince.dto.CityDelRequest;
 import com.territory.cityprovince.dto.CityRequest;
 import com.territory.cityprovince.dto.CityResponse;
 import com.territory.cityprovince.entities.City;
@@ -29,4 +30,7 @@ public class CityController {
         CityResponse cityResponse = cityService.addCity(cityRequest);
         return ResponseEntity.created(new URI("/add/")).body(cityResponse);
     }
+
+    @DeleteMapping("/del")
+    public void delCity(@RequestBody CityDelRequest cityDelRequest) { cityService.delCity(cityDelRequest);}
 }

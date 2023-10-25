@@ -1,6 +1,7 @@
 package com.territory.cityprovince.services;
 
 
+import com.territory.cityprovince.dto.CityDelRequest;
 import com.territory.cityprovince.dto.CityRequest;
 import com.territory.cityprovince.dto.CityResponse;
 import com.territory.cityprovince.entities.City;
@@ -11,4 +12,6 @@ public interface CityService {
     List<City> allCity();
 
     CityResponse addCity(CityRequest cityRequest);
+
+    void delCity(CityDelRequest cityDelRequest);
 }

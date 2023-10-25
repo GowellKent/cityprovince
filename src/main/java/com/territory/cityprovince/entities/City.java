@@ -20,7 +20,7 @@ public class City {
     private String name;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "prov_id")
     private Prov prov;
 

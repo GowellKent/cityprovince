@@ -20,7 +20,7 @@ public class Prov {
     @Column(length = 30, nullable = false)
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "prov")
+    @OneToMany(mappedBy = "prov")
     private List<City> cities;
 
     public Prov(String name) {
