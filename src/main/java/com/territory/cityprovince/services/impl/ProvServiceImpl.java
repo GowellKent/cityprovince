@@ -28,7 +28,7 @@ public class ProvServiceImpl implements ProvService {
 
     public ProvResponse addProv(ProvRequest provRequest){
         Prov prov = new Prov();
-        prov.setName(provRequest.getName());
+        prov.setName(provRequest.getName().toUpperCase());
 
         Prov newProv = provRepo.save(prov);
 
@@ -60,7 +60,7 @@ public class ProvServiceImpl implements ProvService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Name Already Taken!");
         }
 
-        prov.setName(provUpdRequest.getName());
+        prov.setName(provUpdRequest.getName().toUpperCase());
         provRepo.save(prov);
 
         return ProvResponse.builder().id(provUpdRequest.getId()).name(prov.getName()).build();

@@ -14,7 +14,8 @@ import java.util.List;
 @Table
 public class Prov {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "prov_sequence", sequenceName =  "prov_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "prov_sequence")
     private Long id;
 
     @Column(length = 30, nullable = false)
