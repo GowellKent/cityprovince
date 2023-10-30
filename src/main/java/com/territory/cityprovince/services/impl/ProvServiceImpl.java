@@ -4,6 +4,7 @@ import com.territory.cityprovince.dto.ProvDelRequest;
 import com.territory.cityprovince.dto.ProvRequest;
 import com.territory.cityprovince.dto.ProvResponse;
 import com.territory.cityprovince.dto.ProvUpdRequest;
+import com.territory.cityprovince.entities.City;
 import com.territory.cityprovince.entities.Prov;
 import com.territory.cityprovince.repositories.ProvRepo;
 import com.territory.cityprovince.services.ProvService;
@@ -68,5 +69,17 @@ public class ProvServiceImpl implements ProvService {
 
     public Prov provById(ProvRequest provRequest) {
         return provRepo.getById(provRequest.getId());
+    }
+
+    @Override
+    public List<City> findCities(Long id) {
+        Optional<Prov> prov = provRepo.findById(id);
+
+        if (prov.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Nothing Found!");
+        }
+
+        List<City> cities = prov.get().getCities();
+        return cities;
     }
 }

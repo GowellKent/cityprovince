@@ -17,4 +17,5 @@ public interface CityService {
     void delCity(CityDelRequest cityDelRequest);
 
     CityResponse updCity(CityUpdRequest cityUpdRequest);
+
 }

@@ -4,6 +4,7 @@ import com.territory.cityprovince.dto.ProvDelRequest;
 import com.territory.cityprovince.dto.ProvRequest;
 import com.territory.cityprovince.dto.ProvResponse;
 import com.territory.cityprovince.dto.ProvUpdRequest;
+import com.territory.cityprovince.entities.City;
 import com.territory.cityprovince.entities.Prov;
 import com.territory.cityprovince.services.ProvService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,10 @@ public class ProvController {
     public ResponseEntity<ProvResponse> updProv(@RequestBody ProvUpdRequest provUpdRequest) throws Exception{
         ProvResponse provResponse = provService.updProv(provUpdRequest);
         return ResponseEntity.created(new URI("/upd")).body(provResponse);
+    }
+
+    @GetMapping(path = "{id}")
+    public List<City> cities(@PathVariable("id") Long id){
+        return provService.findCities(id);
     }
 }

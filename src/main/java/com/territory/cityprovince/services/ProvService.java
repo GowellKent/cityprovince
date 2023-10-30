@@ -4,6 +4,7 @@ import com.territory.cityprovince.dto.ProvDelRequest;
 import com.territory.cityprovince.dto.ProvRequest;
 import com.territory.cityprovince.dto.ProvResponse;
 import com.territory.cityprovince.dto.ProvUpdRequest;
+import com.territory.cityprovince.entities.City;
 import com.territory.cityprovince.entities.Prov;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface ProvService {
     ProvResponse updProv(ProvUpdRequest provUpdRequest);
 
     Prov provById(ProvRequest provRequest);
+
+    List<City> findCities(Long id);
 }

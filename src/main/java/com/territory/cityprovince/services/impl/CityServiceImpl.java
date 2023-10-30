@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CityServiceImpl implements CityService {
@@ -46,7 +47,6 @@ public class CityServiceImpl implements CityService {
                 .build();
     }
 
-    @Override
     public void delCity(CityDelRequest cityDelRequest) {
         Long cityId = cityDelRequest.getId();
 
@@ -57,7 +57,6 @@ public class CityServiceImpl implements CityService {
         throw new ResponseStatusException(HttpStatus.OK);
     }
 
-    @Override
     public CityResponse updCity(CityUpdRequest cityUpdRequest) {
         Long cityId = cityUpdRequest.getId();
 
@@ -72,4 +71,5 @@ public class CityServiceImpl implements CityService {
                 .provId(city.getProv().getId())
                 .build();
     }
+
 }
